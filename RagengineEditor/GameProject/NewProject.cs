@@ -1,4 +1,5 @@
 ﻿using RagengineEditor.Utilities;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
@@ -14,55 +15,63 @@ namespace RagengineEditor.GameProject
         public string ProjectFile { get; set; }
         [DataMember]
         public List<string> Folders { get; set; }
+        public byte[] Icon { get; set; }
+        public byte[] Screenshot { get; set; }
+        public string IconFilePath { get; set; }
+        public string ScrrenshotFilePath { get; set; }
+        public string ProjectFilePath { get; set; }
     }
 
     class NewProject : ViewModelBase
     {
         // TO DO: get the path from the installation location
         private readonly string _templatePath = @"..\..\RagengineEditor\ProjectTemplates";
-        private string _name = "NewProject";
-        public string Name
+        private string _projectName = "NewProject";
+        public string ProjectName
         {
-            get => _name;
+            get => _projectName;
             set
             {
-                if(_name != value)
+                if(_projectName != value)
                 {
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
+                    _projectName = value;
+                    OnPropertyChanged(nameof(ProjectName));
                 }
             }
         }
-        private string _path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\RagengineProjects\";
-        public string Path
+        private string _projectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\RagengineProjects\";
+        public string ProjectPath
         {
-            get => _path;
+            get => _projectPath;
             set
             {
-                if (_path != value)
+                if (_projectPath != value)
                 {
-                    _path = value;
-                    OnPropertyChanged(nameof(Path));
+                    _projectPath = value;
+                    OnPropertyChanged(nameof(ProjectPath));
                 }
             }
         }
 
+        private ObservableCollection<ProjectTemplate> _projectTemplates = new ObservableCollection<ProjectTemplate>();
+        public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates { get; }
         public NewProject()
         {
+            ProjectTemplates = new ReadOnlyObservableCollection<ProjectTemplate>(_projectTemplates);
             try
             {
                 var templateFiles = Directory.GetFiles(_templatePath, "template.xml", SearchOption.AllDirectories);
                 Debug.Assert(templateFiles.Any());
+                // This loops help create template
                 foreach(var file in templateFiles)
                 {
-                    var template = new ProjectTemplate()
-                    {
-                        ProjectType = "Empty Project",
-                        ProjectFile = "project.ragnengine",
-                        Folders = new List<string>() { ".Ragengine", "Content", "GameCode" }
-                    };
-
-                    Serializer.ToFile(template, file);
+                    var template = Serializer.FromFile<ProjectTemplate>(file);
+                    template.IconFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Icon.png"));
+                    template.Icon = File.ReadAllBytes(template.IconFilePath);
+                    template.ScrrenshotFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), "Screenshot.png"));
+                    template.Screenshot = File.ReadAllBytes(template.ScrrenshotFilePath);
+                    template.ProjectFilePath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(file), template.ProjectFile));
+                    _projectTemplates.Add(template);
                 }
             }
             catch(Exception ex)
