@@ -146,9 +146,12 @@ namespace RagengineEditor.GameProject
                 dirInfo.Attributes |= FileAttributes.Hidden;
                 File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "Icon.png")));
                 File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "Screenshot.png")));
+                
+                var projectXml = File.ReadAllText(template.ProjectFilePath);
+                projectXml = string.Format(projectXml, ProjectName, ProjectPath);
+                var projectPath = Path.GetFullPath(Path.Combine(path, ProjectName + Project.Extension));
+                File.WriteAllText(projectPath, projectXml);
 
-                var project = new Project(ProjectName, path);
-                Serializer.ToFile(project, path + $"{ProjectName}" + Project.Extension);
                 return path;
             }
             catch (Exception ex)
