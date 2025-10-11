@@ -1,12 +1,11 @@
-<ProjectTemplate
-	xmlns="http://schemas.datacontract.org/2004/07/RagengineEditor.GameProject"
-	xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
-	<Folders
-		xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
-		<a:string>.Ragengine</a:string>
-		<a:string>Content</a:string>
-		<a:string>GameCode</a:string>
-	</Folders>
-	<ProjectFile>project.ragnengine</ProjectFile>
-	<ProjectType>Empty Project</ProjectType>
-</ProjectTemplate>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Game xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/RagengineEditor.GameProject">
+	<ProjectName>{0}</ProjectName>
+	<ProjectPath>{1}</ProjectPath>
+	<Scenes>
+		<Scene z:Id="i2">
+			<Project z:Ref="i1" />
+			<SceneName>DefaultScene</SceneName>
+		</Scene>
+	</Scenes>
+</Game>
