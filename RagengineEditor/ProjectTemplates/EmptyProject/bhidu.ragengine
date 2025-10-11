@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Game xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/RagengineEditor.GameProject">
+	<ProjectName>bhidu</ProjectName>
+	<ProjectPath>C:\Users\Admin\Documents\RagengineProjects\bhidu\</ProjectPath>
+	<Scenes>
+		<Scene z:Id="i2">
+			<Project z:Ref="i1" />
+			<SceneName>DefaultScene</SceneName>
+		</Scene>
+	</Scenes>
+</Game>
