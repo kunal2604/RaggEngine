@@ -6,6 +6,13 @@ namespace RagengineEditor.GameProject
     [DataContract]
     public class Scene : ViewModelBase
     {
+        public Scene(Project project, string sceneName)
+        {
+            Debug.Assert(project != null);
+            Project = project;
+            SceneName = sceneName;
+        }
+
         private string _sceneName;
         [DataMember]
         public string SceneName 
@@ -22,11 +29,21 @@ namespace RagengineEditor.GameProject
         }
         [DataMember]
         public Project Project { get; private set; }
-        public Scene(Project project, string sceneName)
+
+        public bool _isActive;
+
+        [DataMember]
+        public bool IsActive
         {
-            Debug.Assert(project != null);
-            Project = project;
-            SceneName = sceneName;
+            get => _isActive;
+            set
+            {
+                if(_isActive != value)
+                {
+                    _isActive = value;
+                    OnPropertyChanged(nameof(IsActive));
+                }
+            }
         }
     }
 }
