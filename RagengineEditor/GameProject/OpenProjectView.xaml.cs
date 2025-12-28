@@ -32,6 +32,7 @@ namespace RagengineEditor.GameProject
             if(project != null)
             {
                 dialogResult = true;
+                window.DataContext = project;
             }
             window.DialogResult = dialogResult;
             window.Close();
