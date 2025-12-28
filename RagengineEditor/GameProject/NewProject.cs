@@ -143,6 +143,10 @@ namespace RagengineEditor.GameProject
                 }
 
                 var dirInfo = new DirectoryInfo(path + @".Ragengine\");
+                if (!dirInfo.Exists)
+                {
+                    dirInfo.Create();
+                }
                 dirInfo.Attributes |= FileAttributes.Hidden;
                 File.Copy(template.IconFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "Icon.png")));
                 File.Copy(template.ScreenshotFilePath, Path.GetFullPath(Path.Combine(dirInfo.FullName, "Screenshot.png")));

@@ -50,10 +50,10 @@ namespace RagengineEditor.GameProject
 
         public static Project Current => Application.Current.MainWindow.DataContext as Project;
 
-        public static Project Load(string file)
+        public static Project Load(string path)
         {
-            Debug.Assert(File.Exists(file));
-            return Serializer.FromFile<Project>(file);
+            Debug.Assert(File.Exists(path.ToLower()));
+            return Serializer.FromFile<Project>(path);
         }
 
         public void Unload()
