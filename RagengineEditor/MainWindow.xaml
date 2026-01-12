@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RagengineEditor"
         xmlns:editors="clr-namespace:RagengineEditor.Editors"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
     <Grid>
         <editors:WorldEditorView />
     </Grid>
