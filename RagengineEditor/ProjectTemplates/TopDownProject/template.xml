@@ -7,6 +7,6 @@
 		<a:string>Content</a:string>
 		<a:string>GameCode</a:string>
 	</Folders>
-	<ProjectFile>project.ragnengine</ProjectFile>
+	<ProjectFile>project.ragengine</ProjectFile>
 	<ProjectType>Top-Down Project</ProjectType>
 </ProjectTemplate>
