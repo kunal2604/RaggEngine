@@ -22,6 +22,7 @@ namespace RagengineEditor.GameProject
             if(!string.IsNullOrEmpty(projectPath))
             {
                 dialogResult = true;
+                var project = OpenProject.Open(new ProjectData() { ProjectName = vm.ProjectName, ProjectPath = projectPath });
             }
             window.DialogResult = dialogResult;
             window.Close();
