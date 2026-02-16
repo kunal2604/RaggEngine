@@ -26,7 +26,9 @@ namespace RagengineEditor.GameProject
     {
         // TO DO: get the path from the installation location
         private readonly string _templatePath = @"..\..\RagengineEditor\ProjectTemplates";
+        
         private string _projectName = "NewProject";
+        
         public string ProjectName
         {
             get => _projectName;
@@ -40,7 +42,9 @@ namespace RagengineEditor.GameProject
                 }
             }
         }
+
         private string _projectPath = $@"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\RagengineProjects\";
+        
         public string ProjectPath
         {
             get => _projectPath;
@@ -84,6 +88,7 @@ namespace RagengineEditor.GameProject
         }
 
         private ObservableCollection<ProjectTemplate> _projectTemplates = new ObservableCollection<ProjectTemplate>();
+        
         public ReadOnlyObservableCollection<ProjectTemplate> ProjectTemplates { get; }
 
         private bool ValidateProjectPath()
