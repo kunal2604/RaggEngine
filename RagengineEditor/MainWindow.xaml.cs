@@ -1,4 +1,4 @@
-﻿﻿using RagengineEditor.GameProject;
+﻿using RagengineEditor.GameProject;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
